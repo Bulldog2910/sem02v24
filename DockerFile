@@ -9,25 +9,20 @@ nano \
 wget \
 curl \
 git
-RUN useradd -G sudo -m -d /home/MJBJ -s /bin/bash -p "$(openssl
-passwd -1 Matnik321)" MJBJ
+RUN useradd -G sudo -m -d /home/MJBJ -s /bin/bash -p "$(opensslpasswd -1 Matnik321)" MJBJ
 USER MJBJ
 WORKDIR /home/MJBJ
 RUN mkdir hacking \
 && cd hacking \
-&& curl -SL
-https://raw.githubusercontent.com/uia-worker/is105misc/master/sem01v2
-4/pawned.sh > pawned.sh \
+&& curl -SL https://raw.githubusercontent.com/uia-worker/is105misc/master/sem01v24/pawned.sh > pawned.sh \
 && chmod 764 pawned.sh \
 && cd ..
-RUN git config --global user.email "Mat.nik.jorgensen@gmail.com"
-\
+RUN git config --global user.email "Mat.nik.jorgensen@gmail.com" \
 && git config --global user.name "Mathias Jose Bull Jorgensen" \
-&& git config --global url."https://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:@github.com/".insteadOf
-"https://github.com" \
+&& git config --global url."https://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:@github.com/".insteadOf "https://github.com" \
 && mkdir -p github.com/Bulldog2910
 USER root
-RUN curl -SL https://go.dev/dl/go1.21.7.OS-arm64.tar.gz \
+RUN curl -SL https://go.dev/dl/go1.22.1.linux-arm64.tar.gz \
 | tar xvz -C /usr/local
 USER MJBJ
 SHELL ["/bin/bash", "-c"]
